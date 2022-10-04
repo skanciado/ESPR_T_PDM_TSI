@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "name": "Project",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "projectId": {
+      "type": "string"
+    },
+    "status": {
+      "model": "project-status"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "finishDate": {
+      "type": "date"
+    },
+    "team": {
+      "plugin": "users-permissions",
+      "collection": "user"
+    },
+    "folders": {
+      "collection": "folder"
+    },
+    "workflow": {
+      "model": "project-workflow"
+    },
+    "lifecycle": {
+      "model": "project-lifecycle"
+    },
+    "projectLeader": {
+      "plugin": "users-permissions",
+      "model": "user"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rights",
+  "info": {
+    "name": "Right"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "modify": {
+      "collection": "application-role"
+    },
+    "view": {
+      "collection": "application-role"
+    }
+  }
+}

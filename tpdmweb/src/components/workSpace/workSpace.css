@@ -1,0 +1,256 @@
+.spaceIcons {
+	font-size: 1.8em;
+	color: gray;
+	cursor: pointer;
+}
+
+.spaceIconsNoPointer2 {
+	font-size: 1.8em;
+	color: gray;
+	cursor: pointer;
+}
+
+.spaceIconsNoPointer {
+	font-size: 1.8em;
+	margin-right: 8px;
+	color: gray;
+}
+
+.projectActionsIcons {
+	font-size: 1.8em;
+	color: #0056b3;
+	cursor: pointer;
+}
+
+.projectActionsIconsDisabled {
+	font-size: 1.8em;
+	color: darkgray;
+}
+
+.folderActionsIcons {
+	font-size: 1.8em;
+	color: gray;
+	cursor: pointer;
+}
+
+.folderActionsIconsDisabled {
+	font-size: 1.8em;
+	color: darkgray;
+}
+
+.documentActionsIcons {
+	font-size: 1.8em;
+	color: #0056b3;
+	cursor: pointer;
+}
+
+.documentActionsIconsDisabled {
+	font-size: 1.8em;
+	color: darkgray;
+}
+
+.listul {
+	list-style-type: none;
+}
+
+/* >>>>>>>>>> icons states */
+.iconsState {
+	width: 140px;
+}
+
+/* >>>>>>>>>> Tasks */
+.itemTask {
+	cursor: pointer;
+}
+
+.itemTask span {
+	vertical-align: super;
+}
+
+.itemTask i {
+	font-size: 1.8em;
+	color: gray;
+	margin-right: 8px;
+}
+
+.itemTask:hover i {
+	color: #0056b3;
+}
+
+.itemTask:hover span {
+	font-weight: bolder;
+}
+
+/* >>>>>>>>>> Documents */
+.itemDocument {
+	padding-right: 68.8px;
+}
+
+.itemDocument div span {
+	vertical-align: super;
+}
+
+.itemDocument:hover div span {
+	font-weight: bolder;
+}
+
+.itemDocument:hover div i.mdi-file-document,
+.itemDocument:hover div i.mdi-file-cad
+ {
+	color: #0056b3;
+}
+
+.itemDocument:hover div i.mdi-information-outline {
+	color: steelblue;
+}
+
+.itemDocument:hover div i.mdi-transit-connection-variant {
+	color: #0056b3;
+}
+
+.documentActionsIcons {
+	font-size: 1.8em;
+	color: gray;
+	cursor: pointer;
+}
+
+.itemDocument:hover div i.documentActionsIcons {
+	color: #0056b3;
+}
+
+.itemDocumentIconStatus {
+	font-size: 1.4em;
+	vertical-align: unset;
+	color: maroon;
+}
+
+/* >>>>>>>>>> Item Folder */
+.itemFolder {
+	padding-right: 68.8px;
+}
+
+.itemFolder div span {
+	vertical-align: super;
+}
+
+.itemFolder:hover div span {
+	font-weight: bolder;
+}
+
+.itemFolder:hover div i.mdi-folder-outline {
+	color: #0056b3;
+}
+
+.itemFolder:hover div i.mdi-information-outline {
+	color: steelblue;
+}
+
+.itemFolder:hover div i.mdi-arrow-down-drop-circle-outline,
+.itemFolder:hover div i.mdi-arrow-up-drop-circle-outline {
+	color: seagreen;
+}
+
+.itemFolder:hover div i.folderActionsIcons {
+	color: #0056b3;
+}
+
+/* <<<<<<<<<< Item Folder */
+
+/* >>>>>>>>>> Item FolderOpen */
+.itemFolderOpen {
+	padding-right: 120px;
+}
+
+.itemFolderOpen div span {
+	font-weight: bolder;
+	vertical-align: super;
+}
+
+.itemFolderOpen div i.mdi-folder-outline {
+	color: #0056b3;
+}
+
+.itemFolderOpen div i.mdi-information-outline {
+	color: steelblue;
+}
+
+.itemFolderOpen div i.mdi-arrow-up-drop-circle-outline {
+	color: seagreen;
+}
+
+/* <<<<<<<<<< Item Project */
+
+/* >>>>>>>>>> Item Project */
+.itemProjectIconStatus {
+	font-size: 1.4em;
+	vertical-align: unset;
+	color: gray;
+}
+
+.itemProject {
+	padding-right: 40px;
+}
+
+.itemProject div span {
+	vertical-align: super;
+	margin-right: 20px;
+}
+
+.itemProject:hover div span {
+	font-weight: bolder;
+}
+
+.itemProject:hover div i.mdi-transit-connection-variant,
+.itemProject:hover div i.mdi-autorenew,
+.itemProject:hover div i.tick-circle-outline,
+.itemProject:hover div i.mdi-cogs,
+
+.itemProject:hover div i.mdi-flag-checkered
+{
+	color: maroon;
+}
+
+.itemProject:hover div i.mdi-puzzle-outline {
+	color: #0056b3;
+}
+
+.itemProject:hover div i.mdi-information-outline {
+	color: steelblue;
+}
+
+.itemProject:hover div i.mdi-arrow-down-drop-circle-outline,
+.itemProject:hover div i.mdi-arrow-up-drop-circle-outline {
+	color: seagreen;
+}
+/* <<<<<<<<<< Item Project */
+
+/* >>>>>>>>>> Item ProjectOpen */
+.itemProjectOpenIconStatus {
+	font-size: 1.4em;
+	vertical-align: unset;
+	color: maroon;
+}
+
+.itemProjectOpen {
+	padding-right: 40px;
+}
+
+.itemProjectOpen div span {
+	font-weight: bolder;
+	vertical-align: super;
+	margin-right: 20px;
+}
+
+.itemProjectOpen div i.mdi-puzzle-outline {
+	color: #0056b3;
+}
+
+.itemProjectOpen div i.mdi-information-outline {
+	color: steelblue;
+}
+
+.itemProjectOpen div i.mdi-arrow-up-drop-circle-outline {
+	color: seagreen;
+}
+
+/* <<<<<<<<<< Item Project */

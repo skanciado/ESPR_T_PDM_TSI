@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/cad-document-life-cycles",
+      "handler": "cad-document-life-cycle.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/cad-document-life-cycles/count",
+      "handler": "cad-document-life-cycle.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/cad-document-life-cycles/:id",
+      "handler": "cad-document-life-cycle.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/cad-document-life-cycles",
+      "handler": "cad-document-life-cycle.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/cad-document-life-cycles/:id",
+      "handler": "cad-document-life-cycle.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/cad-document-life-cycles/:id",
+      "handler": "cad-document-life-cycle.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

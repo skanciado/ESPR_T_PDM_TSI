@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/cad-document-statuses",
+      "handler": "cad-document-status.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/cad-document-statuses/count",
+      "handler": "cad-document-status.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/cad-document-statuses/:id",
+      "handler": "cad-document-status.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/cad-document-statuses",
+      "handler": "cad-document-status.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/cad-document-statuses/:id",
+      "handler": "cad-document-status.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/cad-document-statuses/:id",
+      "handler": "cad-document-status.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

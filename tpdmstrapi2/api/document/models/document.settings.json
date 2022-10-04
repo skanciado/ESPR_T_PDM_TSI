@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "documents",
+  "info": {
+    "name": "Document",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "documentId": {
+      "type": "string"
+    },
+    "type": {
+      "model": "document-type"
+    },
+    "status": {
+      "model": "document-status"
+    },
+    "files": {
+      "collection": "file1"
+    },
+    "rights": {
+      "model": "right"
+    },
+    "locked": {
+      "type": "boolean"
+    },
+    "description": {
+      "type": "string"
+    },
+    "lifecycle": {
+      "model": "document-life-cycle"
+    },
+    "workflow": {
+      "model": "document-workflow"
+    },
+    "userLock": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "revision": {
+      "type": "string"
+    }
+  }
+}

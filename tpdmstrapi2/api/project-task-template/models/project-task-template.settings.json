@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_task_templates",
+  "info": {
+    "name": "ProjectTaskTemplate",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "taskNumber": {
+      "type": "integer"
+    },
+    "taskName": {
+      "type": "string"
+    },
+    "actions": {
+      "collection": "action-template"
+    },
+    "completeConditions": {
+      "collection": "rule"
+    },
+    "roleAssigned": {
+      "collection": "application-role"
+    }
+  }
+}

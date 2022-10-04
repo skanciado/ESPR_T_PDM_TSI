@@ -1,0 +1,39 @@
+[
+	{
+		"_key": "9501293",
+		"_id": "ObjToLifecycle/9501293",
+		"_from": "ObjectTypes/9393997",
+		"_to": "Lifecycle/9499774",
+		"_rev": "_ebdF5Wm---",
+		"name": "ObjToLifecycle",
+		"attributes": [
+			{
+				"tabName": "General",
+				"content": [
+					{
+						"status": {
+							"isRelation": true,
+							"relationKind": "Edge",
+							"relationName": "CurrentLifecycle",
+							"relationValue": "currentStatus",
+							"position": 8,
+							"type": "text",
+							"label": "_00_status",
+							"colSpan": "1",
+							"display": "block",
+							"readOnly": "disabled",
+							"defaultValue": "",
+							"required": "true",
+							"minLength": "0",
+							"maxLength": "9000",
+							"table_display": "block",
+							"table_readOnly": "disabled",
+							"table_label": "_02_status",
+							"table_width": 80
+						}
+					}
+				]
+			}
+		]
+	}
+]

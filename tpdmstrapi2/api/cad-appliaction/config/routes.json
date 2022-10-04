@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/cad-appliactions",
+      "handler": "cad-appliaction.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/cad-appliactions/count",
+      "handler": "cad-appliaction.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/cad-appliactions/:id",
+      "handler": "cad-appliaction.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/cad-appliactions",
+      "handler": "cad-appliaction.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/cad-appliactions/:id",
+      "handler": "cad-appliaction.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/cad-appliactions/:id",
+      "handler": "cad-appliaction.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

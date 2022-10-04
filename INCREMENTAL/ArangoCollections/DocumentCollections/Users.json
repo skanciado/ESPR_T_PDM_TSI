@@ -1,0 +1,42 @@
+[
+	{
+		"_key": "7649911",
+		"_id": "Users/7649911",
+		"_rev": "_eagtxPC---",
+		"name": "Fran gl",
+		"password": "$2a$10$l62RWqLcFKtb9sHy79RwQufWIy8lFOxh7s/45A1LRaBdot965MbeC",
+		"email": "fran@hotmail.com",
+		"isAdmin": true,
+		"enableUser": true,
+		"roles": [
+			"Roles/2906565",
+			"Roles/2906566"
+		]
+	},
+	{
+		"_key": "9653888",
+		"_id": "Users/9653888",
+		"_rev": "_ebN_xS2---",
+		"name": "Ary",
+		"password": "$2a$10$l62RWqLcFKtb9sHy79RwQufWIy8lFOxh7s/45A1LRaBdot965MbeC",
+		"email": "alejandro.ruiz-yordan@t-systems.com",
+		"isAdmin": true,
+		"enableUser": true,
+		"roles": [
+			"Roles/9568618"
+		]
+	},
+	{
+		"_key": "9676719",
+		"_id": "Users/9676719",
+		"_rev": "_ebhwgPC---",
+		"name": "ExternalUser",
+		"password": "$2a$10$l62RWqLcFKtb9sHy79RwQufWIy8lFOxh7s/45A1LRaBdot965MbeC",
+		"email": "external@user.com",
+		"isAdmin": false,
+		"enableUser": true,
+		"roles": [
+			"Roles/9568620"
+		]
+	}
+]

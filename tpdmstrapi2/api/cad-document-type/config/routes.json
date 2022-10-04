@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/cad-document-types",
+      "handler": "cad-document-type.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/cad-document-types/count",
+      "handler": "cad-document-type.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/cad-document-types/:id",
+      "handler": "cad-document-type.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/cad-document-types",
+      "handler": "cad-document-type.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/cad-document-types/:id",
+      "handler": "cad-document-type.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/cad-document-types/:id",
+      "handler": "cad-document-type.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

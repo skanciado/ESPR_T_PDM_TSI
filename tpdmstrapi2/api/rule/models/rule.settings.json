@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rules",
+  "info": {
+    "name": "Rule",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "input": {
+      "model": "document-type"
+    },
+    "status": {
+      "model": "document-status"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+.bordered-viewer
+{
+    width:          100%; 
+
+    height:         600px;
+    border:         1px solid gray;
+    border-radius:  5px;
+    padding:   2px;
+}
+
+.bordered-promote-form
+{
+    width:          100%; 
+    border:         1px solid #17A2B8;
+    border-radius:  5px;
+    padding:   10px;
+    margin-top:     5px;
+    margin-bottom:  10px; 
+}
+
+.bordered-demote-form
+{
+    width:          100%; 
+    border:         1px solid #FFC107;
+    border-radius:  5px;
+    padding:   10px;
+    margin-top:     5px;
+    margin-bottom:  10px; 
+}
+
+canvas {
+    left: 0px !important;
+}
+
+.modal-60w {
+    min-width: 60%;
+    max-width: 800px;
+}

@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "aplicationusers",
+  "info": {
+    "name": "Aplicationusers"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "username": {
+      "type": "string"
+    },
+    "Rol": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "document_life_cycles",
+  "info": {
+    "name": "DocumentLifeCycle",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "lifecycle": {
+      "collection": "document-graph-node-status"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/workspacetasks",
+      "handler": "workspacetasks.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/workspacetasks/count",
+      "handler": "workspacetasks.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/workspacetasks/:id",
+      "handler": "workspacetasks.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/workspacetasks",
+      "handler": "workspacetasks.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/workspacetasks/:id",
+      "handler": "workspacetasks.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/workspacetasks/:id",
+      "handler": "workspacetasks.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

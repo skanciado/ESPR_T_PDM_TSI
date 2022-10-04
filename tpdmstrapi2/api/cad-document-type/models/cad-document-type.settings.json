@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cad_document_types",
+  "info": {
+    "name": "CADDocumentType"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

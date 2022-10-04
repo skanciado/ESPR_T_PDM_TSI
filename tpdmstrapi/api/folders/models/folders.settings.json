@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "folders",
+  "info": {
+    "name": "Folders"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "PhaseID": {
+      "type": "string"
+    },
+    "PhaseName": {
+      "type": "string"
+    },
+    "ProjectID": {
+      "type": "string"
+    },
+    "ParentID": {
+      "type": "string"
+    }
+  }
+}

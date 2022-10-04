@@ -1,0 +1,294 @@
+[
+	{
+		"_key": "9577962",
+		"_id": "ObjectTypes/9577962",
+		"_rev": "_ebnEe46---",
+		"name": "Document",
+		"relations": [],
+		"tableButtons": {
+			"create": {
+				"label": "_00_create",
+				"readOnly": "false",
+				"src": null,
+				"path": null,
+				"width": 0,
+				"height": 0
+			},
+			"delete": {
+				"label": "_00_delete",
+				"readOnly": "false",
+				"src": null,
+				"path": null,
+				"width": 0,
+				"height": 0
+			},
+			"save": {
+				"label": "_00_save",
+				"readOnly": "false",
+				"src": null,
+				"path": null,
+				"width": 0,
+				"height": 0
+			},
+			"print": {
+				"label": "_00_print",
+				"readOnly": "false",
+				"src": null,
+				"path": null,
+				"width": 0,
+				"height": 0
+			},
+			"export": {
+				"label": "_00_export",
+				"readOnly": "false",
+				"src": null,
+				"path": null,
+				"width": 0,
+				"height": 0
+			}
+		},
+		"attributes": [
+			{
+				"tabName": "General",
+				"formColumns": "2",
+				"content": [
+					{
+						"documentType": {
+							"position": "1",
+							"type": "text",
+							"label": "_00_documentType",
+							"colSpan": "2",
+							"display": "block",
+							"readOnly": "disabled",
+							"defaultValue": "",
+							"required": "true",
+							"minLength": "0",
+							"maxLength": "9000",
+							"table_display": "block",
+							"table_readOnly": "disabled",
+							"table_label": "_02_documentType",
+							"table_width": 0
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"_key": "9393997",
+		"_id": "ObjectTypes/9393997",
+		"_rev": "_ebnEe5---_",
+		"name": "BaseObject",
+		"relations": [
+			"ObjToLifecycle"
+		],
+		"attributes": [
+			{
+				"tabName": "General",
+				"content": [
+					{
+						"name": {
+							"position": 1,
+							"type": "text",
+							"label": "_00_name",
+							"colSpan": "2",
+							"display": "block",
+							"readOnly": "disabled",
+							"defaultValue": "",
+							"required": "true",
+							"minLength": "0",
+							"maxLength": "9000",
+							"table_display": "block",
+							"table_readOnly": "disabled",
+							"table_label": "_02_name",
+							"table_width": 0
+						}
+					},
+					{
+						"id": {
+							"position": 2,
+							"type": "text",
+							"label": "_00_id",
+							"colSpan": "2",
+							"display": "block",
+							"readOnly": "disabled",
+							"defaultValue": "",
+							"required": "true",
+							"minLength": "0",
+							"maxLength": "9000",
+							"table_display": "block",
+							"table_readOnly": "disabled",
+							"table_label": "_02_id",
+							"table_width": 0
+						}
+					},
+					{
+						"creationDate": {
+							"position": 5,
+							"type": "date",
+							"label": "_00_creationDate",
+							"colSpan": "1",
+							"display": "block",
+							"readOnly": "disabled",
+							"defaultValue": "",
+							"required": "true",
+							"min": null,
+							"max": null,
+							"step": null,
+							"table_display": "block",
+							"table_readOnly": "disabled",
+							"table_label": "_02_creationDate",
+							"table_width": 0
+						}
+					},
+					{
+						"lastModifyingDate": {
+							"position": 7,
+							"type": "date",
+							"label": "_00_lastModifyDate",
+							"colSpan": "1",
+							"display": "block",
+							"readOnly": "disabled",
+							"defaultValue": "",
+							"required": "true",
+							"min": null,
+							"max": null,
+							"step": null,
+							"table_display": "block",
+							"table_readOnly": "disabled",
+							"table_label": "_02_lastModifyDate",
+							"table_width": 100
+						}
+					},
+					{
+						"lastModifyingUser": {
+							"isRelation": true,
+							"relationKind": "Document",
+							"relationName": "User",
+							"relationValue": "name",
+							"position": 6,
+							"type": "date",
+							"label": "_00_lastModifyDateUser",
+							"colSpan": "1",
+							"display": "block",
+							"readOnly": "disabled",
+							"defaultValue": "",
+							"required": "true",
+							"min": null,
+							"max": null,
+							"step": null,
+							"table_display": "block",
+							"table_readOnly": "disabled",
+							"table_label": "_02_lastModifyDateUser",
+							"table_width": 0
+						}
+					},
+					{
+						"owner": {
+							"isRelation": true,
+							"relationKind": "Document",
+							"relationName": "User",
+							"relationValue": "name",
+							"position": 3,
+							"type": "text",
+							"label": "_00_owner",
+							"colSpan": "1",
+							"display": "block",
+							"readOnly": "disabled",
+							"defaultValue": "",
+							"required": "true",
+							"minLength": "0",
+							"maxLength": "9000",
+							"table_display": "block",
+							"table_readOnly": "disabled",
+							"table_label": "_02_owner",
+							"table_width": 90
+						}
+					},
+					{
+						"owningGroup": {
+							"isRelation": true,
+							"relationKind": "Document",
+							"relationName": "Group",
+							"relationValue": "name",
+							"position": 4,
+							"type": "text",
+							"label": "_00_owningGroup",
+							"colSpan": "1",
+							"display": "block",
+							"readOnly": "disabled",
+							"defaultValue": "",
+							"required": "true",
+							"minLength": "0",
+							"maxLength": "9000",
+							"table_display": "block",
+							"table_readOnly": "disabled",
+							"table_label": "_02_owningGroup",
+							"table_width": 80
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"_key": "9580517",
+		"_id": "ObjectTypes/9580517",
+		"_rev": "_ebomfgG---",
+		"name": "Projects",
+		"relations": [],
+		"tableButtons": {
+			"create": {
+				"label": "_00_create",
+				"readOnly": "false",
+				"src": null
+			},
+			"delete": {
+				"label": "_00_delete",
+				"readOnly": "false",
+				"src": null
+			},
+			"save": {
+				"label": "_00_save",
+				"readOnly": "false",
+				"src": null
+			},
+			"print": {
+				"label": "_00_print",
+				"readOnly": "false",
+				"src": null
+			},
+			"export": {
+				"label": "_00_export",
+				"readOnly": "false",
+				"src": null
+			}
+		},
+		"attributes": [
+			{
+				"tabName": "General",
+				"formColumns": "2",
+				"content": [
+					{
+						"projectType": {
+							"position": 9,
+							"type": "text",
+							"label": "_00_projectType",
+							"colSpan": "1",
+							"display": "block",
+							"readOnly": "disabled",
+							"defaultValue": "",
+							"required": "true",
+							"minLength": "0",
+							"maxLength": "9000",
+							"table_display": "block",
+							"table_readOnly": "disabled",
+							"table_label": "_02_projectType",
+							"table_width": 80
+						}
+					}
+				]
+			}
+		]
+	}
+]

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/project-graph-node-statuses",
+      "handler": "project-graph-node-status.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/project-graph-node-statuses/count",
+      "handler": "project-graph-node-status.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/project-graph-node-statuses/:id",
+      "handler": "project-graph-node-status.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/project-graph-node-statuses",
+      "handler": "project-graph-node-status.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/project-graph-node-statuses/:id",
+      "handler": "project-graph-node-status.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/project-graph-node-statuses/:id",
+      "handler": "project-graph-node-status.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

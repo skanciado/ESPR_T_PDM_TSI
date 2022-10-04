@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "document_types",
+  "info": {
+    "name": "DocumentType"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

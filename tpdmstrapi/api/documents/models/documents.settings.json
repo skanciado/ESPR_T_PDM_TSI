@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "documents",
+  "info": {
+    "name": "Documents"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Type": {
+      "type": "string"
+    },
+    "Status": {
+      "type": "string"
+    },
+    "ProjectsNames": {
+      "type": "string"
+    },
+    "Permissions": {
+      "type": "text"
+    },
+    "Revision": {
+      "type": "string"
+    },
+    "Application": {
+      "type": "string"
+    },
+    "DocumentID": {
+      "type": "string"
+    },
+    "File": {
+      "type": "string"
+    },
+    "FolderID": {
+      "type": "biginteger"
+    },
+    "Lock": {
+      "type": "boolean",
+      "default": false
+    },
+    "Description": {
+      "type": "richtext"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tasks",
+  "info": {
+    "name": "Tasks"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "StatusActions": {
+      "type": "string"
+    },
+    "Information": {
+      "type": "richtext"
+    },
+    "Action": {
+      "type": "richtext"
+    },
+    "TaskID": {
+      "type": "string"
+    }
+  }
+}

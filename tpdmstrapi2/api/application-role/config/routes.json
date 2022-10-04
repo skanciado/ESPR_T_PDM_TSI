@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/application-roles",
+      "handler": "application-role.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/application-roles/count",
+      "handler": "application-role.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/application-roles/:id",
+      "handler": "application-role.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/application-roles",
+      "handler": "application-role.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/application-roles/:id",
+      "handler": "application-role.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/application-roles/:id",
+      "handler": "application-role.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cad_documents",
+  "info": {
+    "name": "CADDocument",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "model": "cad-document-type"
+    },
+    "application": {
+      "model": "cad-appliaction"
+    },
+    "status": {
+      "model": "cad-document-status"
+    },
+    "files": {
+      "collection": "file1"
+    },
+    "lifecycle": {
+      "model": "cad-document-life-cycle"
+    },
+    "revision": {
+      "type": "string"
+    },
+    "rights": {
+      "model": "right"
+    },
+    "workflow": {
+      "model": "document-workflow"
+    },
+    "locked": {
+      "type": "boolean"
+    },
+    "description": {
+      "type": "string"
+    },
+    "userLock": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "documentId": {
+      "type": "string"
+    }
+  }
+}

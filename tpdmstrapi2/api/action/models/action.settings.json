@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "actions",
+  "info": {
+    "name": "Action"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "actionTemplate": {
+      "model": "action-template"
+    },
+    "status": {
+      "type": "boolean"
+    }
+  }
+}

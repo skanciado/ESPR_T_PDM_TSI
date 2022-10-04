@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/project-tasks",
+      "handler": "project-task.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/project-tasks/count",
+      "handler": "project-task.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/project-tasks/:id",
+      "handler": "project-task.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/project-tasks",
+      "handler": "project-task.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/project-tasks/:id",
+      "handler": "project-task.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/project-tasks/:id",
+      "handler": "project-task.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

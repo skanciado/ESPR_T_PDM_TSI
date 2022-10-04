@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "documentsworkflows",
+  "info": {
+    "name": "Documentsworkflows"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "WorkflowTemplate": {
+      "type": "string"
+    },
+    "TasksNames": {
+      "type": "string"
+    },
+    "UserName": {
+      "type": "string"
+    },
+    "DocumentName": {
+      "type": "string"
+    },
+    "ProjectName": {
+      "type": "string"
+    }
+  }
+}

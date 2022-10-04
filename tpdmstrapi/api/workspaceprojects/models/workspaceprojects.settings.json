@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "workspaceprojects",
+  "info": {
+    "name": "Workspaceprojects"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "ProjectID": {
+      "type": "string"
+    },
+    "UserName": {
+      "type": "string"
+    },
+    "Rol": {
+      "type": "string"
+    }
+  }
+}

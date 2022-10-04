@@ -1,0 +1,4 @@
+00, pantalla de login,
+01, barra de navegacion cabecera programa,
+02, tabla de dashboard,
+03, pantalla busqueda avanzada de barra de navegacion cabecera programa,

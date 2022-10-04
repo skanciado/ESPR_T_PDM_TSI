@@ -1,0 +1,60 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/workspaceprojects",
+      "handler": "workspaceprojects.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/workspaceprojects/count",
+      "handler": "workspaceprojects.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/workspaceprojects/:id",
+      "handler": "workspaceprojects.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/workspaceprojects",
+      "handler": "workspaceprojects.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/workspaceprojects/:id",
+      "handler": "workspaceprojects.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/workspaceprojects/:id",
+      "handler": "workspaceprojects.delete",
+      "config": {
+        "policies": []
+      }
+	},
+	{
+		"method": "POST",
+		"path": "/workspace",
+		"handler": "workspaceprojects.workspace",
+		"config": {
+		  "policies": []
+		}
+	  }
+  ]
+}

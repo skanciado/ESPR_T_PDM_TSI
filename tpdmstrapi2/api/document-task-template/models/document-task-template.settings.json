@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "document_task_templates",
+  "info": {
+    "name": "DocumentTaskTemplate",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "taskNumber": {
+      "type": "integer"
+    },
+    "taskName": {
+      "type": "string"
+    },
+    "completeConditions": {
+      "collection": "rule"
+    },
+    "actions": {
+      "collection": "action-template"
+    },
+    "roleAssigned": {
+      "collection": "application-role"
+    }
+  }
+}

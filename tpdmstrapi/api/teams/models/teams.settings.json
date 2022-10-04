@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "teams",
+  "info": {
+    "name": "Teams"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Leader": {
+      "type": "string"
+    },
+    "Team": {
+      "type": "text"
+    },
+    "ProjectName": {
+      "type": "string"
+    }
+  }
+}

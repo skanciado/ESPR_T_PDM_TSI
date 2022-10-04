@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/cad-documents",
+      "handler": "cad-document.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/cad-documents/count",
+      "handler": "cad-document.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/cad-documents/:id",
+      "handler": "cad-document.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/cad-documents",
+      "handler": "cad-document.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/cad-documents/:id",
+      "handler": "cad-document.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/cad-documents/:id",
+      "handler": "cad-document.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

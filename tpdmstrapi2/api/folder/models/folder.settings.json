@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "folders",
+  "info": {
+    "name": "Folder",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "phaseNumber": {
+      "type": "integer"
+    },
+    "phaseName": {
+      "type": "string"
+    },
+    "documents": {
+      "collection": "document"
+    },
+    "cadDocuments": {
+      "collection": "cad-document"
+    }
+  }
+}

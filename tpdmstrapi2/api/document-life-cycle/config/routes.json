@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/document-life-cycles",
+      "handler": "document-life-cycle.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/document-life-cycles/count",
+      "handler": "document-life-cycle.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/document-life-cycles/:id",
+      "handler": "document-life-cycle.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/document-life-cycles",
+      "handler": "document-life-cycle.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/document-life-cycles/:id",
+      "handler": "document-life-cycle.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/document-life-cycles/:id",
+      "handler": "document-life-cycle.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

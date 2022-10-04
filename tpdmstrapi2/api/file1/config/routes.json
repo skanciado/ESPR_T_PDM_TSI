@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/file-1-s",
+      "handler": "file1.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/file-1-s/count",
+      "handler": "file1.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/file-1-s/:id",
+      "handler": "file1.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/file-1-s",
+      "handler": "file1.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/file-1-s/:id",
+      "handler": "file1.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/file-1-s/:id",
+      "handler": "file1.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

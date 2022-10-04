@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_tasks",
+  "info": {
+    "name": "ProjectTask",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "template": {
+      "model": "project-task-template"
+    },
+    "completedInfo": {
+      "type": "string"
+    },
+    "actions": {
+      "collection": "action"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "document_tasks",
+  "info": {
+    "name": "DocumentTask",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "completedInfo": {
+      "type": "string"
+    },
+    "template": {
+      "model": "document-task-template"
+    },
+    "actions": {
+      "collection": "action"
+    }
+  }
+}

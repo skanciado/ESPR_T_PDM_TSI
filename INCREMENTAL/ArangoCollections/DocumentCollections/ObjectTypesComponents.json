@@ -1,0 +1,70 @@
+[
+"text": {
+"display": "block",
+"readOnly": "disabled",
+"defaultValue": "",
+"required": "true",
+"minLength": "0",
+"maxLength": "9000"
+},
+"textarea":{
+"display": "block",
+"readOnly": "disabled",
+"defaultValue": "",
+"required": "true",
+"minLength": "0",
+"maxLength": "9000",
+"rows": "2",
+"cols": "10"
+},
+"date":{
+"display": "block",
+"readOnly": "disabled",
+"defaultValue": "",
+"required": "true",
+"min": null,
+"max": null,
+"step": null
+},
+"select-one":{
+"display": "block",
+"readOnly": "disabled",
+"defaultValue": "",
+"size": "0",
+"multiple": false,
+"valuesSelectOne": [
+          {"key": "2906565", "value": "_00_Management"},
+          {"key": "2906566", "value": "_00_Comercial"},
+          {"key": "2906567", "value": "_00_Design"},
+        ]
+},
+"checkbox":{
+"display": "block",
+"readOnly": "disabled",
+"defaultValue": "",
+},
+"button":{
+"display": "block",
+"readOnly": "disabled",
+"defaultValue": "",
+"src": ""
+},
+"label":{
+"display": "block",
+"defaultValue": ""
+},
+"img":{
+"display": "block",
+"width": 100,
+"height": 100,
+"src": ""
+},
+,
+"svg":{
+"display": "block",
+"width": 100,
+"height": 100,
+"path": ""
+},
+]
+

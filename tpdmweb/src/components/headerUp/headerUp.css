@@ -1,0 +1,21 @@
+
+.navIconsHeader {
+	font-size: 2em;
+	margin-left: 4px;
+	margin-right: 4px;
+	cursor: pointer;
+}
+
+.tpdm {
+	color: #c82333;
+	font-size: 2em;
+	padding-right: 60px;
+}
+
+.header {
+	background-color: white;
+	border-color: #c82333;
+	color: #c82333;
+	border-style: solid;
+	border-width: 0 0 2px 0;
+}

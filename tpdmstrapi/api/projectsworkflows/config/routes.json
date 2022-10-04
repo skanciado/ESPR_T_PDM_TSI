@@ -1,0 +1,60 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/projectsworkflows",
+      "handler": "projectsworkflows.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/projectsworkflows/count",
+      "handler": "projectsworkflows.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/projectsworkflows/:id",
+      "handler": "projectsworkflows.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/projectsworkflows",
+      "handler": "projectsworkflows.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/projectsworkflows/:id",
+      "handler": "projectsworkflows.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/projectsworkflows/:id",
+      "handler": "projectsworkflows.delete",
+      "config": {
+        "policies": []
+      }
+    },
+	{
+		"method": "POST",
+		"path": "/createProjectWorkflow",
+		"handler": "projectsworkflows.createProjectWorkflow",
+		"config": {
+		  "policies": []
+		}
+	}
+  ]
+}

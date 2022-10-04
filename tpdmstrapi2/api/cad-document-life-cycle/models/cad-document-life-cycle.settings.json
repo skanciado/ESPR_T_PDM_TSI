@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cad_document_life_cycles",
+  "info": {
+    "name": "CADDocumentLifeCycle",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "lifecycle": {
+      "collection": "document-graph-node-status"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "document_graph_node_statuses",
+  "info": {
+    "name": "DocumentGraphNodeStatus",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "state": {
+      "model": "document-status"
+    },
+    "parents": {
+      "collection": "document-status"
+    },
+    "children": {
+      "collection": "document-status"
+    }
+  }
+}

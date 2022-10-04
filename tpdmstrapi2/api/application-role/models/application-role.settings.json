@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "application_roles",
+  "info": {
+    "name": "ApplicationRole",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

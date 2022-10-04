@@ -1,0 +1,7 @@
+900, decrypt = 'Token expired!' / 'Cookie expired!
+899, 'Token no coincide!'
+898, error.details[0].message
+897, 'Invalid password!'
+896, 'E-mail does not exists'
+895, 'User does not match!'
+894, "Undefined ObjectType _id: " + collectionId);

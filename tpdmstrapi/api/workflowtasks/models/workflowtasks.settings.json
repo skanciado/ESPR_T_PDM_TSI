@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "workflowtasks",
+  "info": {
+    "name": "Workflowtasks"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "WorkflowName": {
+      "type": "string"
+    },
+    "TasksNames": {
+      "type": "string"
+    },
+    "IsProject": {
+      "type": "boolean"
+    }
+  }
+}

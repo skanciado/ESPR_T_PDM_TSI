@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "name": "Projects"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Status": {
+      "type": "string"
+    },
+    "StartDate": {
+      "type": "date"
+    },
+    "FinishDate": {
+      "type": "date"
+    },
+    "ProjectID": {
+      "type": "string"
+    },
+    "UserName": {
+      "type": "string"
+    }
+  }
+}

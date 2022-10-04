@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projectsworkflows",
+  "info": {
+    "name": "Projectsworkflows"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "WorkflowTemplate": {
+      "type": "string"
+    },
+    "TasksNames": {
+      "type": "text"
+    },
+    "TeamLeader": {
+      "type": "string"
+    },
+    "ProjectName": {
+      "type": "string"
+    },
+    "Coments": {
+      "type": "richtext"
+    }
+  }
+}

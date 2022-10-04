@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_graph_node_statuses",
+  "info": {
+    "name": "ProjectGraphNodeStatus",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "state": {
+      "model": "project-status"
+    },
+    "parents": {
+      "collection": "project-status"
+    },
+    "children": {
+      "collection": "project-status"
+    }
+  }
+}

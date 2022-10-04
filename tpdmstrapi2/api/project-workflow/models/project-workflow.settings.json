@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "project_workflows",
+  "info": {
+    "name": "ProjectWorkflow",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "comments": {
+      "type": "string"
+    },
+    "template": {
+      "model": "project-workflow-template"
+    },
+    "task": {
+      "model": "project-task"
+    },
+    "tasks": {
+      "collection": "project-task"
+    }
+  }
+}

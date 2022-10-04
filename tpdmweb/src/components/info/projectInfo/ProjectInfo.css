@@ -1,0 +1,40 @@
+
+.no-outline-button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.col-fix-width-230 { 
+    padding-right: 15px;
+    padding-left: 15px;
+    min-width: 230px; 
+}
+
+.col-min-width-230 { 
+    min-width: 230px !important; 
+}
+
+.col-fix-width-420 { 
+    padding-right: 15px;
+    padding-left: 15px;
+    min-width: 420px; 
+}
+
+.col-fill-remaining { 
+    flex: 1;
+}
+
+.form-label-ellipsis {
+    display: inline-block;
+    /* max-width: 150px; */
+    padding-right: 0px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.form-align-middle {
+    display: flex;
+    align-items: center;
+}

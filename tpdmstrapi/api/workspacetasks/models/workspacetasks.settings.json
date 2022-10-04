@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "workspacetasks",
+  "info": {
+    "name": "Workspacetasks"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "TaskID": {
+      "type": "string"
+    },
+    "UserName": {
+      "type": "string"
+    },
+    "Rol": {
+      "type": "string"
+    },
+    "ProjectName": {
+      "type": "string"
+    }
+  }
+}
