@@ -2,7 +2,7 @@ import {createObjectType, parentlistObjectTypes, attributelistObjectTypes} from 
 export async function crudApCreateObjectType(target) {
   let jsonData = undefined;
   const res = await createObjectType(target.parent, target.name, JSON.parse(target.attributes));
-  if (res !== undefined) {
+  if (res !== 0) {
     jsonData = res;
     return jsonData;
   }

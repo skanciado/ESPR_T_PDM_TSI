@@ -1,18 +1,32 @@
 import {errorMessage} from "../../../transversal/error/errorController";
 import {axiosAsync} from "../../../utilities/infrastructure/utilsInfraestructure";
-export async function createGroup(name, users) {
+export async function findAllGroupsCase() {
   try {
     let result = undefined;
-    result = await axiosAsync.post("groups/createGroup", {data: {name: name, users: users}});
+    result = await axiosAsync.get("groupsCase/findAllGroupsCase");
     if (result?.status !== 200) {
-      errorMessage("createGroup", result);
+      errorMessage("findAllGroupsCase", result);
     } else {
-      return result.data.created;
+      return result.data._result;
     }
   } catch (e) {
-    errorMessage("createGroup", e);
+    errorMessage("findAllGroupsCase", e);
   }
-  return 0;
+  return [];
+}
+export async function findGroupsCase(ids) {
+  try {
+    let result = undefined;
+    result = await axiosAsync.post("groupsCase/findGroupsCase", {ids: ids});
+    if (result?.status !== 200) {
+      errorMessage("findGroupsCase", result);
+    } else {
+      return result.data._result;
+    }
+  } catch (e) {
+    errorMessage("findGroupsCase", e);
+  }
+  return [];
 }
 export async function findAllGroups() {
   try {
@@ -21,7 +35,7 @@ export async function findAllGroups() {
     if (result?.status !== 200) {
       errorMessage("findAllGroups", result);
     } else {
-      return result.data._result[0];
+      return result.data._result;
     }
   } catch (e) {
     errorMessage("findAllGroups", e);
@@ -42,28 +56,42 @@ export async function findGroup(id) {
   }
   return undefined;
 }
-export async function updateGroup(id, name, users) {
+export async function createGroup(values) {
   try {
     let result = undefined;
-    result = await axiosAsync.post("groups/updateCache", {filter: {_id: id}, data: {name: name, users: users}});
+    result = await axiosAsync.post("groups/createGroup", {data: values});
     if (result?.status !== 200) {
-      errorMessage("updateCache", result);
+      errorMessage("createGroup", result);
+    } else {
+      return result.data;
+    }
+  } catch (e) {
+    errorMessage("createGroup", e);
+  }
+  return 0;
+}
+export async function updateGroup(dbId, values) {
+  try {
+    let result = undefined;
+    result = await axiosAsync.post("groups/updateGroup", {filter: {_id: dbId}, data: values});
+    if (result?.status !== 200) {
+      errorMessage("updateGroup", result);
     } else {
       return result.data.updated;
     }
   } catch (e) {
-    errorMessage("updateCache", e);
+    errorMessage("updateGroup", e);
   }
   return 0;
 }
-export async function deleteGroup(id) {
+export async function deleteGroup(_id) {
   try {
     let result = undefined;
-    result = await axiosAsync.post("groups/deleteGroup", {filter: {_id: id}});
+    result = await axiosAsync.post("groups/deleteGroup", {filter: {_id: _id}});
     if (result?.status !== 200) {
       errorMessage("deleteGroup", result);
     } else {
-      return result.data.removed;
+      return result.data.deleted;
     }
   } catch (e) {
     errorMessage("deleteGroup", e);

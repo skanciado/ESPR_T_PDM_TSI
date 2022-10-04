@@ -1,0 +1,33 @@
+.tree-element {
+    margin: 0;
+    position: relative;
+    font-family: monospace;
+    line-height: 2;
+  }
+  div.tree-element:before {
+    content: "";
+    position: absolute;
+    top: 24px;
+    left: 1px;
+    height: calc(100% - 48px);
+    border-left: 1px solid pink;
+  }
+  .toggler {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 6px solid slateblue;
+    cursor: pointer;
+    transition-duration: 0.25s;
+    -webkit-transition-duration: 0.25s;
+  }
+  .toggler.closed {
+    transform: rotate(90deg);
+  }
+  .collapsed {
+    display: none;
+  }

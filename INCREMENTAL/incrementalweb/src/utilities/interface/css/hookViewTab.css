@@ -1,11 +1,28 @@
 /* Style the tab */
 .tab {
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    border: 1px 1px 0px 1px solid #ccc;
+    background-color: #3C3C3C;;
+  }
+  /* Style the tab */
+.tab-expanded {
+    overflow: hidden;
+    border-top: 1px  solid #ccc;
+    border-left: 1px  solid #ccc;
+    border-right: 1px  solid #ccc;
+    background-color: white;
   }
   /* Style the buttons that are used to open the tab content */
   .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+  }
+  .tab-expanded button {
     background-color: inherit;
     float: left;
     border: none;
@@ -18,9 +35,19 @@
   .tab button:hover {
     background-color: #ddd;
   }
+  .tab-expanded button:hover {
+    background-color: #ddd;
+  }
   /* Create an active/current tablink class */
   .tab button.active {
-    background-color: #ccc;
+    border-bottom: 4px;
+    border-bottom-color: #E20074;;
+    border-bottom-style:solid;
+  }
+  .tab-expanded button.active {
+    border-bottom: 4px;
+    border-bottom-color: #E20074;;
+    border-bottom-style:solid;
   }
   /* Style the tab content */
   .tabcontent {
@@ -28,4 +55,40 @@
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+  }
+
+  .modalContainer .tabcontent td{
+    background-color: #262626;
+   
+  }
+  .modalContainer td input{
+    background-color: #262626;
+    color:white;
+    border-radius: 0px;
+    border-top-style:none;
+    border-left-style:none;
+    border-right-style:none;
+  }
+  .modalContainer td select{
+    background-color: #262626;
+    color:white;
+  }
+  .modalContainer td option{
+    background-color: #262626;
+    color:white;
+  }
+
+  .modalContainer td textarea{
+      background-color: #3C3C3C;
+      color:white;
+  }
+  
+  .align-left{
+    margin-left: 0px;
+    margin-right: auto;
+  }
+
+  .align-right{
+    margin-left: auto;
+    margin-right: 0px;
   }

@@ -35,18 +35,17 @@ router.post("/updatePasswordUser", async (req, res) => {
     const userData = req.body;
     const salt = await bcrypt.genSalt(10);
     const userFind = await generalQueries.find("Users", {email: userData.email});
+    if (userFind._result.length === 0) {
+      return res.status(process.env.CODE_API).json(createErrorWithCode(895, "_API_userNotMatch"));
+    }
     const checkPassword = await bcrypt.compare(userData.oldPassword, userFind._result[0].password);
     if (userFind._result.length > 0 && checkPassword) {
       const newPasswordHash = await bcrypt.hash(userData.password, salt);
+      const userUpdated = await generalQueries.update("Users", {email: userData.email, password: userFind._result.password}, {password: newPasswordHash});
+      return res.send(userUpdated);
     } else {
-      // return res.status(400).json(createError('_API_userNotMatch'));
-      return res.status(process.env.CODE_API).json(createErrorWithCode(895, "_API_userNotMatch"));
+      return res.status(process.env.CODE_API).json(createErrorWithCode(897, "_API_invalidPassword"));
     }
-    const userUpdated = await generalQueries.update("Users", {email: userData.email, password: userFind._result.password}, {password: newPasswordHash});
-    return res.send(userUpdated);
-    // return res.status(process.env.CODE_API).json(createErrorWithCode(897, '_API_invalidPassword'));
-    // const created = await userService.createUser(userData);
-    // return res.json(created);
   } catch (e) {
     if (e["code"] === undefined) {
       e = createError(e.message);
@@ -62,6 +61,7 @@ router.post("/loginUser", async (req, res) => {
     const {error} = loginValidation(req.body);
     if (error) return res.status(process.env.CODE_API).json(createErrorWithCode(898, error.details[0].message));
     //si el usuario existe
+    //const userDat = await findUserCase(req.body.email);
     let userData = await generalQueries.find("Users", {email: req.body.email});
     if (userData._result.length === 0) {
       return res.status(process.env.CODE_API).json(createErrorWithCode(896, "_API_emailNotExist"));
@@ -129,4 +129,30 @@ router.get("/getLogedUser", async (req, res) => {
     return res.status(process.env.CODE_API).json(e);
   }
 });
+async function findUserCase(email) {
+  try {
+    const user = await generalQueries.query(`
+          FOR u IN Users
+          FILTER u.email == '${email}'
+          LET roles = (
+            FOR r IN Roles 
+            FILTER r._id IN u.roles
+            RETURN r
+          ) 
+          LET groups = (
+            FOR g IN Groups 
+            FILTER g._id IN u.groups
+            RETURN g
+          ) 
+          RETURN {_id: u._id, id: u.id, name: u.name, password: u.password, email: u.email, isAdmin: u.isAdmin, enableUser: u.enableUser, roles: roles, groups: groups}
+      `);
+    return user;
+  } catch (e) {
+    if (e["code"] === undefined) {
+      e = createError(e.message);
+      saveLogMessage("error", JSON.stringify(e));
+    }
+    return e;
+  }
+}
 module.exports = router;

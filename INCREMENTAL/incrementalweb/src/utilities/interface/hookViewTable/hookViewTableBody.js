@@ -1,26 +1,32 @@
 export default function HookViewTableBody(props) {
   const tableValues = JSON.parse(JSON.stringify(props.values));
   const body = [];
-  tableValues.forEach((row, r) => {
-    if (row !== null) {
-      const rowComponents = createRowComponents(row, r, props.id, props.dialogContentComponents, props.eventHandlerOnClickButtonsBody, props.eventHandlerOnClickRow, props.eventHandlerOnDblClickRow);
-      body.push(rowComponents);
-    }
-  });
+  if( tableValues !== ""){
+    tableValues.forEach((row, r) => {
+        if (row !== null) {
+        const rowComponents = createRowComponents(row, r, props.id, props.showLabels, props.dialogContentComponents, props.eventHandlerOnClickButtonsBody, props.eventHandlerOnClickRow, props.eventHandlerOnDblClickRow, props.eventHandlerOnFocusOutCell);
+        body.push(rowComponents);
+        }
+    });
+  }
   return body;
 }
-export function createRowComponents(row, r, idTable, dialogContentComponents, eventHandlerOnClickButtonsBody, eventHandlerOnClickRow, eventHandlerOnDblClickRow) {
+export function createRowComponents(row, r, idTable, showLabel, dialogContentComponents, eventHandlerOnClickButtonsBody, eventHandlerOnClickRow, eventHandlerOnDblClickRow, eventHandlerOnFocusOutCell) {
   let idRowValue = "undefined";
-  if (row?.id !== undefined) {
-    idRowValue = row.id;
+  if (row?._id !== undefined) {
+    idRowValue = row._id;
   }
-  const resultRow = Object.entries(row).map(([key, value], c) => {
-    const column = dialogContentComponents.find((element) => Object.keys(element)[0] === key);
-    return (
-      <td key={c} id={idTable + "_c_" + c} className="px-5 py-5 text-sm border-b border-gray-200">
-        <div style={{display: column[key].table_display}}>{returnComponent(idTable, r, c, key, column[key].type, "null", value, column[key].required, column[key].table_readOnly, column[key].valuesSelectOne, eventHandlerOnClickButtonsBody, eventHandlerOnDblClickRow)}</div>
-      </td>
-    );
+  const resultRow = [];
+  dialogContentComponents.forEach((item, c) => {
+    const key = Object.keys(item)[0];
+    const value = Object.values(item)[0];
+    if (value.table_display !== "none") {
+      resultRow.push(
+        <td key={c} id={idTable + "_c_" + c} className="px-2 py-2 text-sm border-gray-200">
+          <div style={{display: value.table_display}}>{returnComponent(idTable, showLabel, r, c, key, value.type, "null", row[key], value.required, value.table_readOnly, value.valuesSelectOne, eventHandlerOnClickButtonsBody, eventHandlerOnFocusOutCell)}</div>
+        </td>
+      );
+    }
   });
   return (
     <tr
@@ -28,13 +34,13 @@ export function createRowComponents(row, r, idTable, dialogContentComponents, ev
       id={idTable + "_r_" + r}
       onClick={(e) => {
         if (e.detail === 1) {
-          eventHandlerOnClickRow(idTable, idTable + "_r_" + r);
+          eventHandlerOnClickRow(idTable, idTable + "_r_" + r, idRowValue);
         } else if (e.detail === 2) {
           eventHandlerOnDblClickRow(idTable + "_r_" + r, idRowValue);
         }
       }}
     >
-      <td className="px-5 py-3 text-base border-b border-gray-200">
+      <td className="px-5 py-3 text-base border-gray-200">
         <div>
           <input id={idTable + "_check_" + idRowValue} name={idTable + "_check_" + idRowValue} type="checkbox" />
         </div>
@@ -43,7 +49,7 @@ export function createRowComponents(row, r, idTable, dialogContentComponents, ev
     </tr>
   );
 }
-function returnComponent(idComponent, indexRow, indexColumn, keyItem, typeComponent, configComponent, valueItem, requiredComponent, readOnlyComponent, valuesSelectOne, eventHandlerOnClickButtons) {
+function returnComponent(idComponent, showLabel, indexRow, indexColumn, keyItem, typeComponent, configComponent, valueItem, requiredComponent, readOnlyComponent, valuesSelectOne, eventHandlerOnClickButtonsBody, eventHandlerOnFocusOutCell) {
   let element = undefined;
   const nameObj = idComponent + "_" + indexRow + "_" + indexColumn + "_" + keyItem;
   if (readOnlyComponent === true) {
@@ -55,6 +61,22 @@ function returnComponent(idComponent, indexRow, indexColumn, keyItem, typeCompon
   } else {
     readOnlyComponent = undefined;
   }
+  if (showLabel === "true" && (typeComponent === "select-one" || typeComponent === "text" || typeComponent === "textarea" || typeComponent === "date")) {
+    if (typeComponent === "select-one") {
+      if (valuesSelectOne !== undefined && valuesSelectOne !== null && valuesSelectOne.length > 0) {
+        const itemsSelect = valuesSelectOne.find((item) => item.value === valueItem || item.key === valueItem);
+        if (itemsSelect !== undefined) {
+          valueItem = itemsSelect.value;
+        }
+      }
+    }
+    element = (
+      <label id={nameObj} name={nameObj} defaultValue={valueItem} className="relative block w-full  appearance-none focus:outline-none sm:text-sm">
+        {valueItem}
+      </label>
+    );
+    return element;
+  }
   if (typeComponent === "select-one") {
     let confControl = {size: 0, multiple: false};
     if (configComponent.size !== undefined && configComponent.size !== null) {
@@ -63,12 +85,11 @@ function returnComponent(idComponent, indexRow, indexColumn, keyItem, typeCompon
     if (configComponent.multiple !== undefined && configComponent.multiple !== null) {
       confControl.multiple = configComponent.multiple;
     }
-    let defaultValue = undefined;
     let itemsSelect = undefined;
     if (valuesSelectOne !== undefined && valuesSelectOne !== null && valuesSelectOne.length > 0) {
       itemsSelect = valuesSelectOne.map((item, cb) => {
         if (item.value === valueItem || item.key === valueItem) {
-          defaultValue = item.key;
+          valueItem = item.key;
         }
         return (
           <option key={cb} value={item.key}>
@@ -78,7 +99,7 @@ function returnComponent(idComponent, indexRow, indexColumn, keyItem, typeCompon
       });
     }
     element = (
-      <select id={nameObj} name={nameObj} disabled={readOnlyComponent} defaultValue={defaultValue} multiple={confControl.multiple} size={confControl.size} className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+      <select id={nameObj} name={nameObj} disabled={readOnlyComponent} defaultValue={valueItem} multiple={confControl.multiple} size={confControl.size} className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         {itemsSelect}
       </select>
     );
@@ -92,9 +113,40 @@ function returnComponent(idComponent, indexRow, indexColumn, keyItem, typeCompon
       confControl.maxLength = configComponent.maxLength;
     }
     if (requiredComponent === true) {
-      element = <input id={nameObj} name={nameObj} type="text" defaultValue={valueItem} readOnly={readOnlyComponent} minLength={confControl.minLength} maxLength={confControl.maxLength} required className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />;
+      element = (
+        <input
+          id={nameObj}
+          name={nameObj}
+          type="text"
+          defaultValue={valueItem}
+          readOnly={readOnlyComponent}
+          minLength={confControl.minLength}
+          maxLength={confControl.maxLength}
+          required
+          onBlur={(e) => {
+            eventHandlerOnFocusOutCell(indexRow, keyItem, e.value);
+          }}
+          autoComplete="off"
+          className="relative block w-full px-3 py-2 placeholder-gray-500 border-b-4 border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+        />
+      );
     } else {
-      element = <input id={nameObj} name={nameObj} type="text" defaultValue={valueItem} readOnly={readOnlyComponent} minLength={confControl.minLength} maxLength={confControl.maxLength} className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />;
+      element = (
+        <input
+          id={nameObj}
+          name={nameObj}
+          type="text"
+          defaultValue={valueItem}
+          readOnly={readOnlyComponent}
+          minLength={confControl.minLength}
+          maxLength={confControl.maxLength}
+          onBlur={(e) => {
+            eventHandlerOnFocusOutCell(indexRow, keyItem, e.target.value);
+          }}
+          autoComplete="off"
+          className="relative block w-full px-3 py-2 placeholder-gray-500 border-b-4 border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+        />
+      );
     }
   }
   if (typeComponent === "textarea") {
@@ -106,9 +158,9 @@ function returnComponent(idComponent, indexRow, indexColumn, keyItem, typeCompon
       confControl.maxLength = configComponent.maxLength;
     }
     if (requiredComponent === true) {
-      element = <textarea id={nameObj} name={nameObj} defaultValue={valueItem} readOnly={readOnlyComponent} minLength={confControl.minLength} maxLength={confControl.maxLength} required rows={confControl.rows} cols={confControl.cols} className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />;
+      element = <textarea id={nameObj} name={nameObj} defaultValue={valueItem} readOnly={readOnlyComponent} minLength={confControl.minLength} maxLength={confControl.maxLength} required rows={confControl.rows} cols={confControl.cols} autoComplete="off" className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />;
     } else {
-      element = <textarea id={nameObj} name={nameObj} defaultValue={valueItem} readOnly={readOnlyComponent} minLength={confControl.minLength} maxLength={confControl.maxLength} rows={confControl.rows} cols={confControl.cols} className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />;
+      element = <textarea id={nameObj} name={nameObj} defaultValue={valueItem} readOnly={readOnlyComponent} minLength={confControl.minLength} maxLength={confControl.maxLength} rows={confControl.rows} cols={confControl.cols} autoComplete="off" className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />;
     }
   }
   if (typeComponent === "date") {
@@ -135,7 +187,7 @@ function returnComponent(idComponent, indexRow, indexColumn, keyItem, typeCompon
     }
   }
   if (typeComponent === "checkbox") {
-    if (valueItem === true) {
+    if (valueItem === "true") {
       element = <input id={nameObj} type="checkbox" disabled={readOnlyComponent} defaultChecked className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />;
     } else {
       element = <input id={nameObj} type="checkbox" disabled={readOnlyComponent} className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />;
@@ -153,7 +205,7 @@ function returnComponent(idComponent, indexRow, indexColumn, keyItem, typeCompon
         type="button"
         disabled={readOnlyComponent}
         onClick={() => {
-          eventHandlerOnClickButtons(nameObj);
+          eventHandlerOnClickButtonsBody(nameObj);
         }}
         className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-incremental border border-transparent rounded-md group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
       >

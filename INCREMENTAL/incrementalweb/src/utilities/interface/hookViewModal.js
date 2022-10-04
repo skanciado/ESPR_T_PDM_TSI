@@ -1,10 +1,27 @@
 import "../interface/css/hookViewModal.css";
-import {useState} from "react";
+import {useState,useContext} from "react";
+import Context from "../../transversal/context/context";
 export function HookViewModal(props) {
-  const [state, setStateModal] = useState();
+    const context = useContext(Context);
+    const [state, setStateModal] = useState();
+  let style = "";
+  let style2 = "";
+  let sExtendedTable = "";
+  if( context.extendedMode !== undefined && 
+    context.extendedMode.value !== undefined){
+    sExtendedTable = context.extendedMode.value;
+  }
+  if( props.forceExtended !== undefined){
+    sExtendedTable  = props.forceExtended;
+  }
+
+  if (sExtendedTable !== "") {
+    style = "-expanded";
+    style2  = " align-right"
+  }
   return (
-    <div className="modalBackground">
-      <div className="modalContainer">
+    <div className={"modalBackground" + style + style2} style={{zIndex: 9}}>
+      <div className={"modalContainer"+style}>
         <div className="titleCloseBtn">
           <button
             onClick={() => {
@@ -15,7 +32,7 @@ export function HookViewModal(props) {
           </button>
         </div>
         <div className="title">
-          <h1>{props.lblTitle}</h1>
+          <h3>{props.lblTitle}</h3>
         </div>
         <div className="body">
           <props.ctrlBody setStateModalBody={setStateModal} initialModalValuesBody={props.initialModalValues} />
@@ -98,9 +115,19 @@ export function HookViewModal(props) {
                           val = text;
                           break;
                         default:
-                          val = child.value;
+                          //si es un datalist
+                          if (child?.list !== null && child?.list !== undefined) {
+                            const result = Array.from(child.list.options).find((option) => option.value === child.value);
+                            if (result !== undefined) {
+                              val = result.dataset.value;
+                            }
+                          } else {
+                            val = child.value;
+                          }
                       }
-                      jsonRow[key] = val;
+                      if (typeCtrl !== "button" && idCtrl.endsWith("_selection") === false) {
+                        jsonRow[key] = val;
+                      }
                     }
                   }
                 }

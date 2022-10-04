@@ -1,0 +1,1 @@
+[{"_key":"10216759","_id":"Actions/10216759","_rev":"_e0prQSu---","id":"00000002","name":"Check Attribute Action","type":"check","requiredParams":["attributeName","expectedValue"]},{"_key":"10216719","_id":"Actions/10216719","_rev":"_e0p34ey---","id":"00000001","name":"Check ObjectType Action","type":"check","requiredParams":["expectedObjType"]}]

@@ -6,11 +6,11 @@ export async function btnUserAdministration(event) {
     let pageStateData = undefined;
     const resData = await crudApUserLogin(event.state);
     if (resData?.errData === true) {
-      errorMessage("BtnLogin", "Error data login");
+      errorMessage("btnUserAdministration", "Error data login");
       return pageStateData;
     }
     if (resData?.enableUser === false) {
-      errorMessage("BtnLogin", "User disabled");
+      errorMessage("btnUserAdministration", "User disabled");
       return pageStateData;
     }
     //MODIFICAR CONTEXT
@@ -19,6 +19,6 @@ export async function btnUserAdministration(event) {
     await caseGetCache(event);
     event.navigate("/home/dashboard", {replace: true});
   } catch (e) {
-    errorMessage("BtnLogin", e);
+    errorMessage("btnUserAdministration", e);
   }
 }

@@ -1,1 +1,16 @@
-[{"_key":"9676605","_id":"GroupMember/9676605","_from":"Users/7649911","_to":"Groups/9676034","_rev":"_ebhvA_q---"},{"_key":"9676627","_id":"GroupMember/9676627","_from":"Users/9653888","_to":"Groups/9676034","_rev":"_ebhvOme---"}]
+[
+	{
+		"_key": "9676605",
+		"_id": "GroupMember/9676605",
+		"_from": "Users/7649911",
+		"_to": "Groups/9676034",
+		"_rev": "_ewtaCzi---"
+	},
+	{
+		"_key": "9676627",
+		"_id": "GroupMember/9676627",
+		"_from": "Users/9653888",
+		"_to": "Groups/9676034",
+		"_rev": "_ewtaCzm---"
+	}
+]

@@ -1,7 +1,6 @@
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import i18n from "../language/i18n";
-import resources from "../language/translations";
+import t from "../language/i18n";
 import log from "loglevel";
 const colors = {
   red: `\u001b[1;31m`,
@@ -67,23 +66,22 @@ export function consoleError(typeError, nameFunction, error, callstack = "") {
   return undefined;
 }
 function findMessage(error) {
-  const lang = i18n.language;
-  let translation = undefined;
+  let translation;
   switch (error.code) {
     case "900":
-      translation = resources[lang].translation["_API_cookieAndTokenExpired"];
+      translation = t("_API_cookieAndTokenExpired");
       break;
     case "899":
-      translation = resources[lang].translation["_API_tokenNotMatch"];
+      translation = t("_API_tokenNotMatch");
       break;
     case "897":
-      translation = resources[lang].translation["_API_invalidPassword"];
+      translation = t("_API_invalidPassword");
       break;
     case "896":
-      translation = resources[lang].translation["_API_emailNotExist"];
+      translation = t("_API_emailNotExist");
       break;
     case "895":
-      translation = resources[lang].translation["_API_userNotMatch"];
+      translation = t("_API_userNotMatch");
       break;
     default:
       translation = error.message;

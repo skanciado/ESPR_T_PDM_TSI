@@ -1,20 +1,25 @@
-//import {useTranslation} from "react-i18next";
-import {useState} from "react";
+import {useState, useContext} from "react";
 import {HookViewModal} from "../../../utilities/interface/hookViewModal";
 import HookViewTable from "../../../utilities/interface/hookViewTable/hookViewTable";
 import HookViewForm from "../../../utilities/interface/hookViewForm";
+import Context from "../../../transversal/context/context";
 export default function HookViewTableRoles(props) {
-  //const {t} = useTranslation();
+  const context = useContext(Context);
   const [formState] = useState({
     formValues: [],
+    formAction: undefined,
   });
-  const [modalState, setModal] = useState({openModal: false, valuesModal: undefined});
+  const [modalState, setModal] = useState({openModal: false, valuesModal: undefined, action: undefined});
   const typeColumns = getTypeColumns(props.dialogContent.attributes);
   const elementsForm = elementsToForm(typeColumns);
-  const eventHandlerOnClick_ButtonsTableBar = (idButton, stateTable) => {
-    if (idButton === "selectedRowOnClick") {
-      const formValues = stateTable.table.find((item) => item !== null && item.id === stateTable.rowSelectedIdValues);
+  const eventHandlerOnClick_ButtonsTableBar = (idButton,  stateTable,updateFunc) => {
+    if( updateFunc !== undefined){
+      formState.myUpdateFunc = updateFunc;
+  }
+  if (idButton === "selectedRowOnClick") {
+      const formValues = stateTable.table.find((item) => item !== null && item._id === stateTable.rowSelectedIdValues);
       formState.formValues = formValues;
+      formState.formAction = stateTable.actionState;
       setModal({openModal: true, valuesModal: undefined});
       //en caso de no existir el boton save (resetear valor antes de guardar el nuevo valor en memoria del componente)
       //stateTable.rowsUpdated = [];
@@ -22,6 +27,7 @@ export default function HookViewTableRoles(props) {
     if (idButton === "create") {
       formState.formValues = elementsForm;
       formState.formValues.id = JSON.stringify(new Date().getTime());
+      formState.formAction = stateTable.actionState;
       setModal({openModal: true, valuesModal: undefined});
       //en caso de no existir el boton save (resetear valor antes de guardar el nuevo valor en memoria del componente)
       //stateTable.rowsCreated = [];
@@ -30,6 +36,7 @@ export default function HookViewTableRoles(props) {
       //EN BDS: eliminar filas de valores
       //en caso de no existir el boton save (resetear valor antes de guardar el nuevo valor en memoria del componente)
       //stateTable.rowsDeletedIds = [];
+      props.crudApTableSave(context, "delete", formState.formValues._id, stateTable.rowsDeletedIds, props.dialogContent.attributes);
     }
     if (idButton === "save") {
       stateTable.rowsCreated = [];
@@ -37,17 +44,55 @@ export default function HookViewTableRoles(props) {
       stateTable.rowsDeletedIds = [];
       //en caso de no usar un modal para crear/editar datos y crear/editar desde la tabla obtener los datos de:
     }
+    if (idButton === "expand") {
+      //navigate("/home/detailsRole", {replace: true});
+      let sExtendedTable = "tblRoles";
+      if( context.extendedMode !== undefined && 
+        context.extendedMode.value !== undefined){
+          const sReadExtendedTable = context.extendedMode.value;
+          if( sReadExtendedTable !== ""){
+              sExtendedTable = "";
+              setModal({openModal: false, valuesModal: undefined});
+          }
+      }
+      context.extendedModeDispatch.handleExtendedModeReplace({value: sExtendedTable});
+    }
   };
   if (modalState.valuesModal !== undefined && JSON.stringify(modalState.valuesModal) !== "{}") {
     //en modo edicion fila añadira el id existente a los paramteros del modal para que los reciba la tabla.
     //en modo crear fila, creara el id con valor undefined a los paramteros del modal para que los reciba la tabla.
     modalState.valuesModal.id = formState.formValues?.id;
+    if (formState.formAction === "processingCreate") {
+      //guardar en bds despues de cerrar el modal el valor de modalState.valuesModal
+      props.crudApTableSave(context, "create", formState.formValues._id, modalState.valuesModal, props.dialogContent.attributes)
+      .then( ( result ) => {
+           if( formState.myUpdateFunc !== undefined) {
+               formState.myUpdateFunc(result);
+           }
+      });
+    }
+    if (formState.formAction === "processingUpdate") {
+      //guardar en bds despues de cerrar el modal el valor de modalState.valuesModal
+      props.crudApTableSave(context, "update", formState.formValues._id, modalState.valuesModal, props.dialogContent.attributes)
+      .then( ( result ) => {
+        if( formState.myUpdateFunc !== undefined) {
+            formState.myUpdateFunc(result);
+        }
+      });
+    }
   }
-  const HookViewFormRoles = () => <HookViewForm idForm={formState.formValues?.id} dialogContent={props.dialogContent.attributes} valuesForm={formState.formValues} valuesAllSelectOne={props.valuesAllSelectOne} eventHandlerOnClickButtons={eventHandlerOnClick_ButtonsForm} />;
+  //si el context tiene un filtro se lo añado
+  let tableFilters = props.tableFilters;
+  if (context.filtersTable !== undefined && context.filtersTable.table === "roles" && context.filtersTable.filters !== undefined) {
+    tableFilters = context.filtersTable.filters;
+    context.filtersTable.filters = undefined;
+    context.filtersTable.table = undefined;
+  }
+  const HookViewFormRoles = () => <HookViewForm idForm={formState.formValues?.id} dialogContent={props.dialogContent.attributes} valuesForm={formState.formValues} valuesAllSelectOne={props.valuesAllSelectOne} eventHandlerOnClickButtons={eventHandlerOnClick_ButtonsForm} action={formState?.formAction} valuesAction={{user: context.user._id, group: context.cache.groupLast}}/>;
   return (
     <>
-      {modalState.openModal && <HookViewModal lblTitle="Detalles" twoButtons={true} lblCancel="Cancel" lblOk="Save" ctrlBody={HookViewFormRoles} idFormBody={formState.formValues.id} setModal={setModal} initialModalValues={formState.formValues} />}
-      <HookViewTable id={"tblRoles"} title="roles" dialogContent={props.dialogContent} values={props.tableValues} valuesAllSelectOne={props.valuesAllSelectOne} eventHandlerOnClickButtonsTableBar={eventHandlerOnClick_ButtonsTableBar} eventHandlerOnClickButtonsTableBody={eventHandlerOnClick_ButtonsTableBody} eventHandlerModalValues={modalState.valuesModal} />
+      <HookViewTable id={props.id} title={props.title} dialogContent={props.dialogContent} values={props.tableValues} showLabels="true" valuesAllSelectOne={props.valuesAllSelectOne} eventHandlerOnClickButtonsTableBar={eventHandlerOnClick_ButtonsTableBar} eventHandlerOnClickButtonsTableBody={eventHandlerOnClick_ButtonsTableBody} eventHandlerModalValues={modalState.valuesModal} eventHandlerOnChange_Filter={tableFilters} />
+      {modalState.openModal && <HookViewModal lblTitle="Detalles" twoButtons={true} lblCancel="Cancel" lblOk="Save" ctrlBody={HookViewFormRoles} idFormBody={formState.formValues.id} setModal={setModal} initialModalValues={formState.formValues} />}      
     </>
   );
 }

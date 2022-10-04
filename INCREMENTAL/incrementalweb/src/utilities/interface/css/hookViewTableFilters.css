@@ -1,0 +1,38 @@
+/* Style the tab */
+.search-input {
+    outline-color: transparent;
+    outline-style: none;
+  }
+  input.search-input,input.search-input:focus {
+    border:none;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -moz-transition: none;
+    -webkit-transition: none;
+    }
+#tabsAndTables table{
+  min-width: 100%;
+  min-height: 30%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
+}
+#tabsAndTables table div{
+  height: auto;
+}
+#tabsAndTables div{
+  background-color: transparent;
+}
+/* #tabsAndTables th input{
+  background-color: #262626;
+} */
+#tabsAndTables th{
+  background-color: #3c3c3c;
+}
+input:disabled{
+  background-color: #3c3c3c;
+}
+/* #tabsAndTables input{
+  background-color: #3c3c3c;
+} */

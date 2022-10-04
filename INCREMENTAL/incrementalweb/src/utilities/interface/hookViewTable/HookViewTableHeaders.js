@@ -1,9 +1,14 @@
 export default function HookViewTableHeader(props) {
-  const headers = props.headers.map((header, h) => (
-    <th key={h} scope="col" className="px-5 py-3 text-base font-semibold text-left border-b border-gray-200">
-      {header.table_display !== "block" ? "" : header.table_label}
-    </th>
-  ));
+  const headers = [];
+  props.headers.forEach((header, h) => {
+    if (header.table_display !== "none") {
+      headers.push(
+        <th key={h} scope="col" className="px-5 py-3 text-base font-semibold text-left border-b border-gray-200">
+          {header.table_display !== "block" ? "" : header.table_label}
+        </th>
+      );
+    }
+  });
   return (
     <tr id={props.id + "_h"}>
       <th className="px-5 py-3 text-base font-semibold text-left border-b border-gray-200">

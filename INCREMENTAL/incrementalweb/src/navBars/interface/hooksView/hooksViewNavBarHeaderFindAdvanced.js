@@ -1,65 +1,78 @@
-import {useTranslation} from "react-i18next";
 import {useState} from "react";
-export default function HookViewNavBarHeaderFindAdvanced(props) {
-  const {t} = useTranslation();
-  let defaultValuesModal = {
-    idDocument: undefined,
-    name: undefined,
-    owner: undefined,
-    description: undefined,
-    proyect: undefined,
-  };
-  if (props.initialModalValuesBody !== undefined) {
-    defaultValuesModal = props.initialModalValuesBody;
-  }
-  const [state, setState] = useState(defaultValuesModal);
-  const handleChange = (e) => {
-    if (e.target !== undefined) {
-      e = e.target;
+import {HookViewModal} from "../../../utilities/interface/hookViewModal";
+import {useContext} from "react";
+import Context from "../../../transversal/context/context";
+import HookViewForm from "../../../utilities/interface/hookViewForm";
+import {adapValuesFiltersTables, adapCleanForm} from "../../../utilities/allLayers/adaptersAllLayers";
+export const HooksViewNavBarHeaderFindAdvanced = () => {
+  const context = useContext(Context);
+  const [modal, setModal] = useState({
+    openModal: false,
+    valuesModal: undefined,
+  });
+  let ModalHookViewNavBarHeaderFindAdvanced = () => <></>;
+  if (modal.valuesModal !== undefined && JSON.stringify(modal.valuesModal) !== "{}") {
+    if (context.filtersTable.filters === undefined) {
+      const valuesModal = adapValuesFiltersTables(modal.valuesModal, true);
+      const element = document.getElementById("tableFilter");
+      context.filtersTableDispatch.handleFiltersTableReplace({table: element.value, filters: valuesModal});
+      modal.valuesModal = undefined;
+      modal.openModal = false;
+      setModal({openModal: false, valuesModal: undefined});
     }
-    const {name, value} = e;
-    //setState del body
-    setState({
-      ...state,
-      [name]: value,
-    });
-    //setState del modal
-    props.setStateModalBody({
-      ...state,
-      [name]: value,
-    });
+  } else {
+    ModalHookViewNavBarHeaderFindAdvanced = () => {
+      if (modal.openModal) {
+        return <HookViewModal lblTitle="Busqueda avanzada" twoButtons={true} lblCancel="Cancelar" lblOk="Buscar" forceExtended="" ctrlBody={HookViewFindAdvanced} idFormBody={"busqueda"} setModal={setModal} initialModalValues={undefined} />;
+      }
+    };
+  }
+  return {
+    setModal,
+    ModalHookViewNavBarHeaderFindAdvanced,
+  };
+};
+function HookViewFindAdvanced() {
+  const context = useContext(Context);
+  let itemsSelect = undefined;
+  if (context.filtersTable?.onlyTable !== undefined) {
+    itemsSelect = (
+      <option key={0} value={context.filtersTable?.onlyTable}>
+        {context.filtersTable?.onlyTable}
+      </option>
+    );
+    context.filtersTable.onlyTable = undefined;
+  } else {
+    itemsSelect = context.tables.map((item, k) => (
+      <option key={k} value={item.table}>
+        {item.table}
+      </option>
+    ));
+  }
+  const [ind, setStateSelect] = useState(0);
+  const handleChange = (e) => {
+    const index = context.tables.findIndex((item) => item.table === e.target.value);
+    setStateSelect(index);
+    adapCleanForm("busqueda");
   };
   return (
     <div>
-      <form>
-        <input type="hidden" name="remember" defaultValue="true" />
-        <div className="flex">
-          <div>
-            <label htmlFor="idDocument">{t("_03_idDcument")}</label>
-            <input id="idDocument" name="idDocument" type="text" value={state.idDocument} onChange={handleChange} autoComplete={t("_03_idDcument")} placeholder={t("_03_idDcument")} required className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />
-          </div>
-          <div>
-            <label htmlFor="name">{t("_03_name")}</label>
-            <input id="name" name="name" type="text" value={state.name} onChange={handleChange} autoComplete={t("_03_name")} placeholder={t("_03_name")} required className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />
-          </div>
-          <div>
-            <label htmlFor="owner">{t("_03_owner")}</label>
-            <input id="owner" name="owner" type="text" value={state.owner} onChange={handleChange} autoComplete={t("_03_owner")} placeholder={t("_03_owner")} required className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />
-          </div>
-        </div>
-        <div className="flex">
-          <div>
-            <label htmlFor="description">{t("_03_description")}</label>
-            <textarea id="description" name="description" type="text" value={state.description} onChange={handleChange} autoComplete="on" placeholder={t("_03_description")} required className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />
-          </div>
-        </div>
-        <div className="flex">
-          <div>
-            <label htmlFor="proyect">{t("_03_proyect")}</label>
-            <input id="proyect" name="proyect" type="text" value={state.proyect} onChange={handleChange} autoComplete="on" placeholder={t("_03_proyect")} required className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" />
-          </div>
-        </div>
-      </form>
+      <div>
+        <select
+          id="tableFilter"
+          name="tableFilter"
+          onChange={(e) => {
+            handleChange(e);
+          }}
+          className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          style={{backgroundColor: "black", color: "white"}}
+        >
+          {itemsSelect}
+        </select>
+      </div>
+      <div>
+        <HookViewForm idForm={"busqueda"} dialogContent={context.tables[ind].dialogContent.attributes} forceExtended="" valuesForm={undefined} valuesAllSelectOne={context.tables[ind].valuesAllSelectOne} eventHandlerOnClickButtons={undefined} action={"busqueda"} />
+      </div>
     </div>
   );
 }

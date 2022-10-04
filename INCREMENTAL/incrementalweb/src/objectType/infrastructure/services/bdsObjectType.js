@@ -26,7 +26,7 @@ export async function createObjectType(parent, name, attributes) {
   } catch (e) {
     errorMessage("createObjectTypes", e);
   }
-  return undefined;
+  return 0;
 }
 export async function parentlistObjectTypes(id) {
   try {
@@ -55,4 +55,46 @@ export async function attributelistObjectTypes(id) {
     errorMessage("attributelistObjectTypes", e);
   }
   return [];
+}
+export async function getValueRelation(relationType, tableName, relationKey, filterValue, filterKey) {
+  try {
+    let result = undefined;
+    result = await axiosAsync.post("objectTypesCase/getValueRelation", {relationType: relationType, tableName: tableName, relationKey: relationKey, filterKey: filterKey, filterValue: filterValue});
+    if (result?.status !== 200) {
+      errorMessage("getValueRelation", result);
+    } else {
+      return result.data;
+    }
+  } catch (e) {
+    errorMessage("getValueRelation", e);
+  }
+  return "";
+}
+export async function getSelectOneRelation(relationType, relationName, relationKey, relationValue) {
+  try {
+    let result = undefined;
+    result = await axiosAsync.post("objectTypesCase/getSelectOneRelation", {relationType: relationType, relationName: relationName, relationKey: relationKey, relationValue: relationValue});
+    if (result?.status !== 200) {
+      errorMessage("getSelectOneRelation", result);
+    } else {
+      return result.data;
+    }
+  } catch (e) {
+    errorMessage("getSelectOneRelation", e);
+  }
+  return undefined;
+}
+export async function findAllObjectTypes() {
+  try {
+    let result = undefined;
+    result = await axiosAsync.post("objectTypes/findAllObjectTypes");
+    if (result?.status !== 200) {
+      errorMessage("findAllObjectTypes", result);
+    } else {
+      return result.data._result;
+    }
+  } catch (e) {
+    errorMessage("findAllObjectTypes", e);
+  }
+  return undefined;
 }

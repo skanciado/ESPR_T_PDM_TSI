@@ -233,6 +233,106 @@ async function replaceJson(req, res, table) {
     return res.status(process.env.CODE_API).json(e);
   }
 }
+async function findEdge(req, res, table) {
+  try {
+    const decrypt = await verifyToken(req, res);
+    if (decrypt.payload !== undefined) {
+      let data;
+      let filter = req.body.filter;
+      Object.keys(filter).map((key) => {
+        if (filter[key] === undefined) {
+          delete filter[key];
+        }
+      });
+      data = await generalQueries.findEdge(table, filter);
+      return res.send(data);
+    } else {
+      return res.status(process.env.CODE_API).json(createErrorWithCode(900, decrypt));
+    }
+  } catch (e) {
+    if (e["code"] === undefined) {
+      e = createError(e.message);
+      saveLogMessage("error", JSON.stringify(e));
+    }
+    return res.status(process.env.CODE_API).json(e);
+  }
+}
+async function updateEdge(req, res, table) {
+  try {
+    const decrypt = await verifyToken(req, res);
+    if (decrypt.payload !== undefined) {
+      let data = req.body.data;
+      let filter = req.body.filter;
+      Object.keys(filter).map((key) => {
+        if (filter[key] === undefined) {
+          delete filter[key];
+        }
+      });
+      Object.keys(data).map((key) => {
+        if (data[key] === undefined) {
+          delete data[key];
+        }
+      });
+      data = await generalQueries.updateEdge(table, filter, data);
+      return res.send(data);
+    } else {
+      return res.status(process.env.CODE_API).json(createErrorWithCode(900, decrypt));
+    }
+  } catch (e) {
+    if (e["code"] === undefined) {
+      e = createError(e.message);
+      saveLogMessage("error", JSON.stringify(e));
+    }
+    return res.status(process.env.CODE_API).json(e);
+  }
+}
+async function createEdge(req, res, table) {
+  try {
+    const decrypt = await verifyToken(req, res);
+    if (decrypt.payload !== undefined) {
+      let data = req.body.data;
+      Object.keys(data).map((key) => {
+        if (data[key] === undefined) {
+          delete data[key];
+        }
+      });
+      data = await generalQueries.createEdge(table, data);
+      return res.send(data);
+    } else {
+      return res.status(process.env.CODE_API).json(createErrorWithCode(900, decrypt));
+    }
+  } catch (e) {
+    if (e["code"] === undefined) {
+      e = createError(e.message);
+      saveLogMessage("error", JSON.stringify(e));
+    }
+    return res.status(process.env.CODE_API).json(e);
+  }
+}
+async function removeEdge(req, res, table) {
+  try {
+    const decrypt = await verifyToken(req, res);
+    if (decrypt.payload !== undefined) {
+      let data;
+      let filter = req.body.filter;
+      Object.keys(filter).map((key) => {
+        if (filter[key] === undefined) {
+          delete filter[key];
+        }
+      });
+      data = await generalQueries.removeEdge(table, filter);
+      return res.send(data);
+    } else {
+      return res.status(process.env.CODE_API).json(createErrorWithCode(900, decrypt));
+    }
+  } catch (e) {
+    if (e["code"] === undefined) {
+      e = createError(e.message);
+      saveLogMessage("error", JSON.stringify(e));
+    }
+    return res.status(process.env.CODE_API).json(e);
+  }
+}
 module.exports.query = query;
 module.exports.create = create;
 module.exports.find = find;
@@ -244,3 +344,7 @@ module.exports.findJson = findJson;
 module.exports.replaceJson = replaceJson;
 module.exports.updateJson = updateJson;
 module.exports.removeJson = removeJson;
+module.exports.findEdge = findEdge;
+module.exports.updateEdge = updateEdge;
+module.exports.createEdge = createEdge;
+module.exports.removeEdge = removeEdge;

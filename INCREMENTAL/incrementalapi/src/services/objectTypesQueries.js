@@ -89,8 +89,10 @@ exports.parentList = async (_id) => {
             RETURN path.vertices
             `);
   let aResult = [];
-  if (queryResult._result.length > 0) {
+  if (queryResult?._result?.length > 0) {
     aResult = queryResult._result[0];
+  } else {
+    aResult = resultObjType;
   }
   return aResult;
 };
@@ -111,6 +113,7 @@ exports.attributeList = async (_id) => {
   let aAttrList = [];
   // Include table components information (in order to render all table elements for that specific ObjectType)
   oAttrResult["tableButtons"] = ObjResult.tableButtons;
+  //console.log(ParentResult);
   for (const obj of ParentResult) {
     // Traverse each ObjectType attributes
     let objAttributes = obj.attributes;
@@ -148,11 +151,14 @@ exports.attributeList = async (_id) => {
     }
     // Traverse RelatedObjects
     let objRelations = obj.relations;
+    //console.log(obj);
+    //console.log(objRelations);
     let aRelatedRes = [];
     for (const relatedObj of objRelations) {
       let currObjId = obj._id;
       let relatedResult = await generalQueries.find(relatedObj, {_from: currObjId});
       aRelatedRes = await relatedResult.all();
+      //console.log(aRelatedRes);
       for (const relObj of aRelatedRes) {
         // Traverse each ObjectType attributes
         let objAttributes = relObj.attributes;
@@ -362,4 +368,33 @@ exports.isUserProjectMember = async (userId, projectId) => {
   });
   const sMemberList = await sMemberObj.all();
   return !!sMemberList[0];
+};
+exports.getValueRelation = async (relationType, tableName, relationKey, filterKey, filterValue) => {
+  let query;
+  if (relationType == "Edge") {
+    query = await generalQueries.findEdge(tableName, {[filterKey]: filterValue});
+  } else {
+    query = await generalQueries.find(tableName, {[filterKey]: filterValue});
+  }
+  const result = await query.all();
+  if (result.length < 1) {
+    return undefined;
+  }
+  return result[0][relationKey];
+};
+exports.getSelectOneRelation = async (relationType, relationName, relationKey) => {
+  let query;
+  if (relationType == "Edge") {
+    query = await generalQueries.findAllEdge(relationName);
+  } else {
+    query = await generalQueries.findAll(relationName);
+  }
+  const result = await query.all();
+  if (result.length < 1) {
+    return undefined;
+  }
+  const res = result.map((item) => {
+    return {key: item._id, value: item[relationKey]};
+  });
+  return res;
 };

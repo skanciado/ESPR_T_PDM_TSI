@@ -1,17 +1,17 @@
 [
 "text": {
 "display": "block",
-"readOnly": "disabled",
+"readOnly": false,
 "defaultValue": "",
-"required": "true",
+"required": true,
 "minLength": "0",
 "maxLength": "9000"
 },
 "textarea":{
 "display": "block",
-"readOnly": "disabled",
+"readOnly": false,
 "defaultValue": "",
-"required": "true",
+"required": true,
 "minLength": "0",
 "maxLength": "9000",
 "rows": "2",
@@ -19,16 +19,16 @@
 },
 "date":{
 "display": "block",
-"readOnly": "disabled",
+"readOnly": false,
 "defaultValue": "",
-"required": "true",
+"required": true,
 "min": null,
 "max": null,
 "step": null
 },
 "select-one":{
 "display": "block",
-"readOnly": "disabled",
+"readOnly": false,
 "defaultValue": "",
 "size": "0",
 "multiple": false,
@@ -40,12 +40,12 @@
 },
 "checkbox":{
 "display": "block",
-"readOnly": "disabled",
+"readOnly": false,
 "defaultValue": "",
 },
 "button":{
 "display": "block",
-"readOnly": "disabled",
+"readOnly": false,
 "defaultValue": "",
 "src": ""
 },
@@ -66,5 +66,12 @@
 "height": 100,
 "path": ""
 },
+{"buttonTable":{
+"readOnly": false,
+"width": null,
+"height": null,
+"path": null,
+"src": ""
+}}
 ]
 

@@ -14,10 +14,10 @@ export async function findCache(user) {
   }
   return undefined;
 }
-export async function updateCache(user, roleLast) {
+export async function updateCache(user, roleLast, groupLast) {
   try {
     let result = undefined;
-    result = await axiosAsync.post("caches/updateCache", {filter: {user: user}, data: {roleLast: roleLast}});
+    result = await axiosAsync.post("caches/updateCache", {filter: {user: user}, data: { roleLast: roleLast, groupLast: groupLast}});
     if (result?.status !== 200) {
       errorMessage("updateCache", result);
     } else {
@@ -28,3 +28,18 @@ export async function updateCache(user, roleLast) {
   }
   return 0;
 }
+
+export async function createCache(user, roleLast, groupLast) {
+    try {
+      let result = undefined;
+      result = await axiosAsync.post("caches/createCache", {filter: {user: user}, data: {user: user, roleLast: roleLast, groupLast: groupLast}});
+      if (result?.status !== 200) {
+        errorMessage("createCache", result);
+      } else {
+        return result.data;
+      }
+    } catch (e) {
+      errorMessage("createCache", e);
+    }
+    return 0;
+  }

@@ -2,7 +2,7 @@ import CacheValidate from "./transversal/cache/cacheValidate";
 import ErrorBoundary from "./transversal/error/errorBoundary";
 import AppRouter from "./transversal/routes/appRouter";
 import ContextState from "./transversal/context/contextStateConfig";
-import "./transversal/language/i18n";
+//import "./transversal/language/i18n";
 function App() {
   return (
     <CacheValidate>

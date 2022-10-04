@@ -1,26 +1,8 @@
-import {useTranslation} from "react-i18next";
-import {useState} from "react";
+import t from "../../../transversal/language/i18n";
 //import Context from "../../../transversal/context/context";
 //import {BtnSaveGroup, BtnDeleteGroup} from "../../application/controllers/controllerGroup";
 const LayoutGroup = () => {
-  const {t} = useTranslation();
   //const context = useContext(Context);
-  const [state, setState] = useState({
-    name: "",
-    users: [],
-  });
-  const handleSubmit = async (e) => {
-    // await BtnSaveGroup({context: context, state: state, navigate: navigate});
-    //const res = await BtnSaveGroup({context: context, state: state});
-    //handleChange(setState, state, res);
-  };
-  // const handleChange = (e) => {
-  //   const {name, value} = e.target;
-  //   setState({
-  //     ...state,
-  //     [name]: value,
-  //   });
-  // };
   return (
     <div className="w-14">
       <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
@@ -47,7 +29,6 @@ const LayoutGroup = () => {
           </li>
         </ul>
       </div>
-
       <input type="hidden" name="remember" defaultValue="true" />
       <div>
         <div>

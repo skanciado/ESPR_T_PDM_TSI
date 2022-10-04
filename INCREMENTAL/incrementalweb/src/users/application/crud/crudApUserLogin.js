@@ -2,6 +2,7 @@ import {loginUser} from "../../infrastructure/services/bdsUser";
 export async function crudApUserLogin(target) {
   let jsonData = undefined;
   const res = await loginUser(target.email, target.password);
+  target.password = undefined;
   if (res !== undefined) {
     if (res?.enableUser === true) {
       jsonData = res;
@@ -12,10 +13,11 @@ export async function crudApUserLogin(target) {
         } */
       }
       const includeRol = res.roles.includes(target.role);
-      if (includeRol === true) {
-        /*const actionsUser = await getAllowedActions(target.role);
-        jsonData.userActions = actionsUser; */
-      } else {
+      if (includeRol === false) {
+        jsonData.errData = true;
+      }
+      const includeGroup = res.groups.includes(target.group);
+      if (includeGroup === false) {
         jsonData.errData = true;
       }
     } else {

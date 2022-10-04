@@ -14,7 +14,7 @@ export function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-export default function createHeaderTabs(tabsName) {
+export default function createHeaderTabs(tabsName,style) {
   const headerTabs = tabsName.map((tabName, t) => (
     <button
       key={t}
@@ -26,5 +26,5 @@ export default function createHeaderTabs(tabsName) {
       {tabName}
     </button>
   ));
-  return <div className="tab">{headerTabs}</div>;
+  return <div className={"tab"+style}>{headerTabs}</div>;
 }
