@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  web:
+    build:
+      context: .
+      args:
+        - PORT=5200
+    environment:
+      - APP_URL=http://localhost:3000
+      - REACT_APP_API_LOG_URL=http://localhost:5300
+      - OBJTYPE_BASEOBJECT_UID=ObjectTypes/9393997
+      - DB_URL=http://arangodb:8529
+      - DB_NAME=TpdmDB
+      - DB_USER=TpdmAdmin
+      - DB_PASS=123456
+      - TOKEN_SECRET=nvsdf12sfowejifas4
+      - COOKIE_SECRET=hVIYdxZSelh3gIK5wQ
+      - JWT_EXPIRES_IN=15
+      - COOKIE_EXPIRES_IN=15
+      - JWT_MAX_SAVE_BL=100
+      - JWT_DELETE_BL=25
+      - PORT_LISTENER=5200
+    ports:
+      - "5200:5200"
+    links:
+      - "db:arangodb"
+  db:
+    image: arangodb:3.7.18
+    ports:
+      - "8529:8529"
+    environment:
+      - ARANGO_ROOT_PASSWORD=alberto04
+      - ARANGO_NO_AUTH=1
+    volumes:
+      - D:\dockerpersistence:/var/lib/arangodb3

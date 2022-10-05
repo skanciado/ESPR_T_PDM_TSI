@@ -43,13 +43,13 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 //se ejecuta cada vez que recibe una solicitud. nota: Si se carga después de la ruta a la vía de acceso raíz, la solicitud nunca funcionara
-/* app.use(function (req, res, next) {
-	console.log('Time:', Date.now());
-	next();
+app.use(function (req, res, next) {
+  console.log("Time:", Date.now());
+  next();
 });
- */
+
 app.use(cookieParser(process.env.COOKIE_SECRET));
 // Routes general
 app.use("/help", routesHelp);
@@ -84,5 +84,10 @@ app.use("/status", routesStatus);
 app.use("/tasks", routesTasks);
 app.use("/users", routesUsers);
 app.listen(process.env.PORT_LISTENER, () => {
-  console.log("API up and running");
+  console.log(`Port Listener in ${process.env.PORT_LISTENER}`);
+  console.log(`APP_URL=${process.env.APP_URL}`);
+  console.log(`DB_URL=${process.env.DB_URL}`);
+  console.log(`DB_NAME=${process.env.DB_NAME}`);
+  console.log(`DB_USER=${process.env.DB_USER}`);
+  console.log(`OBJTYPE_BASEOBJECT_UID=${process.env.OBJTYPE_BASEOBJECT_UID}`);
 });
