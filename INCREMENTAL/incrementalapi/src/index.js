@@ -89,5 +89,6 @@ app.listen(process.env.PORT_LISTENER, () => {
   console.log(`DB_URL=${process.env.DB_URL}`);
   console.log(`DB_NAME=${process.env.DB_NAME}`);
   console.log(`DB_USER=${process.env.DB_USER}`);
+  console.log(`DB_PASS=${process.env.DB_PASS}`);
   console.log(`OBJTYPE_BASEOBJECT_UID=${process.env.OBJTYPE_BASEOBJECT_UID}`);
 });
