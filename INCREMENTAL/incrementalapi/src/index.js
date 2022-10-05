@@ -41,7 +41,7 @@ const corsOptions = {
   credentials: true,
   allowedHeaders: ["Content-Type"],
 };
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //se ejecuta cada vez que recibe una solicitud. nota: Si se carga después de la ruta a la vía de acceso raíz, la solicitud nunca funcionara
