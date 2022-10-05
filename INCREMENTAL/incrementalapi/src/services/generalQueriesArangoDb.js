@@ -1,5 +1,5 @@
 const DB = require("../config/db");
-const {createErrorPromise, createErrorWithCode} = require("../utils/error");
+const { createErrorPromise, createErrorWithCode } = require("../utils/error");
 exports.create = (table, data) => {
   const collection = DB.collection(table);
   return collection.save(data).catch((e) => {

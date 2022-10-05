@@ -5,6 +5,10 @@ const generalQueries = require("../services/generalQueriesArangoDb");
 const { saveLogMessage } = require("../services/log");
 router.get("/findAllRolesCase", async (req, res) => {
   try {
+    console.info("useDatabase" + process.env.DB_NAME);
+    DB.useDatabase(process.env.DB_NAME);
+    console.info("Login" + process.env.DB_USER + " " + process.env.DB_PASSWORD);
+    DB.login(process.env.DB_USER, process.env.DB_PASS);
     console.info("findAllRolesCase Query");
     const result = await generalQueries.findAll("Roles");
     console.info("findAllRolesCase Done");
