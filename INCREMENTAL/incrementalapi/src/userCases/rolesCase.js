@@ -1,13 +1,16 @@
 const router = require("express").Router();
-const {createError} = require("../utils/error");
-const {verifyToken} = require("../utils/tokensAndCookies");
+const { createError } = require("../utils/error");
+const { verifyToken } = require("../utils/tokensAndCookies");
 const generalQueries = require("../services/generalQueriesArangoDb");
-const {saveLogMessage} = require("../services/log");
+const { saveLogMessage } = require("../services/log");
 router.get("/findAllRolesCase", async (req, res) => {
   try {
+    console.info("findAllRolesCase Query");
     const result = await generalQueries.findAll("Roles");
+    console.info("findAllRolesCase Done");
     return res.send(result);
   } catch (e) {
+    console.error("e");
     if (e["code"] === undefined) {
       e = createError(e.message);
     }
@@ -26,7 +29,9 @@ router.post("/findRolesCase", async (req, res) => {
           `);
       return res.send(revisions);
     } else {
-      return res.status(process.env.CODE_API).json(createErrorWithCode(900, decrypt));
+      return res
+        .status(process.env.CODE_API)
+        .json(createErrorWithCode(900, decrypt));
     }
   } catch (e) {
     if (e["code"] === undefined) {
