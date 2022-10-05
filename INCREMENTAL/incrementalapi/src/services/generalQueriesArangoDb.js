@@ -49,6 +49,10 @@ exports.findEdge = (table, filter) => {
   });
 };
 exports.findAll = (table) => {
+  console.info("useDatabase" + process.env.DB_NAME);
+  DB.useDatabase(process.env.DB_NAME);
+  console.info("Login" + process.env.DB_USER + " " + process.env.DB_PASSWORD);
+  DB.login(process.env.DB_USER, process.env.DB_PASS);
   const collection = DB.collection(table);
   return collection.all().catch((e) => {
     return createErrorPromise(e);
