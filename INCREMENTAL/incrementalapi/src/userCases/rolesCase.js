@@ -10,10 +10,11 @@ router.get("/findAllRolesCase", async (req, res) => {
     console.info("findAllRolesCase Done");
     return res.send(result);
   } catch (e) {
-    console.error("e");
+    console.error(e);
     if (e["code"] === undefined) {
       e = createError(e.message);
     }
+    console.error(e);
     saveLogMessage("error", JSON.stringify(e));
     return res.status(process.env.CODE_API).json(e);
   }
