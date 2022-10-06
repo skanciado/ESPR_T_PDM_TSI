@@ -1,5 +1,5 @@
 const DB = require("../config/db");
-const {createErrorPromise, createErrorWithCode} = require("../utils/error");
+const { createErrorPromise, createErrorWithCode } = require("../utils/error");
 exports.create = (table, data) => {
   const collection = DB.collection(table);
   return collection.save(data).catch((e) => {
@@ -49,6 +49,12 @@ exports.findEdge = (table, filter) => {
   });
 };
 exports.findAll = (table) => {
+  /* 
+  console.info("useDatabase" + process.env.DB_NAME);
+  DB.useDatabase(process.env.DB_NAME);
+  console.info("Login : " + process.env.DB_USER + " " + process.env.DB_PASS);
+  DB.login(process.env.DB_USER, process.env.DB_PASS);
+  */
   const collection = DB.collection(table);
   return collection.all().catch((e) => {
     return createErrorPromise(e);
