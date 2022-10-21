@@ -31,13 +31,17 @@ RUN REACT_APP_VERSION=1 \
     REACT_APP_TOKEN_SECRET=avsdf95sfoxejifas0 \ 
     REACT_APP_LNG=es \ 
     npm run build 
+#FROM nginxinc/nginx-unprivileged 
 FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
-RUN rm -rf ./*
+# RUN rm -rf ./*
 COPY --from=build /app/build . 
-RUN rm /etc/nginx/conf.d/default.conf 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# RUN rm /etc/nginx/conf.d/default.conf 
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf  
+COPY default.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
+#EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
 # https://medium.com/swlh/reactjs-docker-environment-variables-f35eb591683e 
 
