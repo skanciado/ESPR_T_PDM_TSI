@@ -26,7 +26,7 @@ RUN npm run build
 RUN REACT_APP_VERSION=1 \
     REACT_APP_DASHBOARD_TIMER_SECONDS=10 \ 
     REACT_APP_NAME=incrementalapi \
-    REACT_APP_API_URL=http://localhost:5200 \ 
+    REACT_APP_API_URL=http://api-incremental.apps.ocpdes.t-systems.es \ 
     REACT_APP_CONSOLE_LOG_VISUALIZE_LEVEL=debug,warn \ 
     REACT_APP_TOKEN_SECRET=avsdf95sfoxejifas0 \ 
     REACT_APP_LNG=es \ 
