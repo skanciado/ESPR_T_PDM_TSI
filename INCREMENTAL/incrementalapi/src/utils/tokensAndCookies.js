@@ -29,7 +29,7 @@ function createCookie(token, req, res) {
   res.cookie("incremental", token, {
     expires: dateExpire,
     httpOnly: true,
-    secure: req.secure || req.headers["x-forwarded-proto"] === "http",
+    secure: false , //req.secure || req.headers["x-forwarded-proto"] === "http",
     signed: true,
     sameSite: "strict",
     session: true,
